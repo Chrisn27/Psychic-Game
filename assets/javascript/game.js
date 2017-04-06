@@ -5,25 +5,40 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
 var userGuesses = [];
+var psychic = [];
 
-    var reset = function() {
+
+      window.onload = function() {
+            startGame();
+      }
+
+
+      var reset = function() {
 
   	  	totalGuesses = 10;
   	  	guessesLeft = 10;
   	  	userGuesses = [];
+            psychic = [];
+            startGame();
 
-	  }
+	}
 
-	    // Determines which key was pressed by user
-document.onkeyup = function(event) {
+      function startGame () {
+            // Psychic computer choice or just a randomly selected index
+            var computerGuess = options[Math.floor(Math.random() * options.length)];
+            psychic.push(computerGuess);
+            console.log(psychic)
+      }
+
+
+
+	// Determines which key was pressed by user
+      document.onkeyup = function(event) {
 
       var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
       // pushes userGuess to the userGuesses array
       userGuesses.push(userGuess);
-
-      // Psychic computer choice or just a randomly selected index
-      var computerGuess = options[Math.floor(Math.random() * options.length)];
 
       // sanity checking 
       // console.log("------------1-------------");
@@ -36,14 +51,14 @@ document.onkeyup = function(event) {
       // console.log(event.keyCode)
 
       // win condition
-      if (userGuess === computerGuess) {
+      if (userGuess === psychic[0]) {
             wins++;
             alert("You win!  You are super gifted.");
             reset();
       }
 
       // lose a guess if you're not a psychic
-      else if (userGuess !== computerGuess) {
+      else if (userGuess !== psychic[0]) {
             guessesLeft--;
       }
 
