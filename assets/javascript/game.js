@@ -12,7 +12,7 @@ var psychic = [];
             startGame();
       }
 
-
+      // reset guesses, clear guessed letters and call a new letter
       var reset = function() {
 
   	  	totalGuesses = 10;
@@ -23,11 +23,12 @@ var psychic = [];
 
 	}
 
+      // start game, select letter
       function startGame () {
             // Psychic computer choice or just a randomly selected index
             var computerGuess = options[Math.floor(Math.random() * options.length)];
             psychic.push(computerGuess);
-            console.log(psychic)
+            //console.log(psychic)
       }
 
 
